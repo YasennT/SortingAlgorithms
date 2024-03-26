@@ -1,5 +1,12 @@
 package bg.smg;
 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
+
 public class ElementSorter extends JFrame {
 
     private JComboBox<String> sortComboBox;
@@ -30,12 +37,13 @@ public class ElementSorter extends JFrame {
                 String selectedSort = (String) sortComboBox.getSelectedItem();
                 switch (selectedSort) {
                     case "Bubble sort":
-                        bubbleSort(elements);
+                        Sorts.bubbleSort(elements);
                         break;
                     case "Selection sort":
                         selectionSort(elements);
                         break;
-                    // Implement other sorting algorithms here
+                    case "Insertion sort":
+                        inser
                 }
             }
         });
@@ -63,13 +71,4 @@ public class ElementSorter extends JFrame {
         elementPanel.revalidate();
         elementPanel.repaint();
     }
-
-    private void bubbleSort(List<Element> elements) {
-        // Implement Bubble sort
-    }
-
-    private void selectionSort(List<Element> elements) {
-        // Implement Selection sort
-    }
-
-// Implement other sorting algorithms here
+}
