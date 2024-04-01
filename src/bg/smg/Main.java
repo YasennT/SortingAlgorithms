@@ -8,13 +8,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-class SortingVisualizer extends JFrame {
+class ElementSorter extends JFrame {
 
     private final List<Element> elements;
     private final JButton sortButton;
 
-    public SortingVisualizer() {
-        setTitle("Sorting Visualizer");
+    // FIELD
+    public ElementSorter() {
+        setTitle("Element Sorter");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setPreferredSize(new Dimension(1200, 400));
 
@@ -54,6 +55,7 @@ class SortingVisualizer extends JFrame {
         add(controlPanel, BorderLayout.NORTH);
         add(drawingPanel, BorderLayout.CENTER);
 
+        // CHOOSE ALGORITHM
         sortButton.addActionListener(e -> {
             sortButton.setEnabled(false);
             String selectedAlgorithm = (String) algorithmComboBox.getSelectedItem();
@@ -86,9 +88,8 @@ class SortingVisualizer extends JFrame {
     // BUBBLE SORT
     private void bubbleSort(List<Element> list) {
         new Thread(() -> {
-            int n = list.size();
-            for (int i = 0; i < n - 1; i++) {
-                for (int j = 0; j < n - i - 1; j++) {
+            for (int i = 0; i < list.size() - 1; i++) {
+                for (int j = 0; j < list.size() - i - 1; j++) {
                     if (list.get(j).getWidth() > list.get(j + 1).getWidth()) {
                         swap(list, j, j + 1);
                         repaint();
@@ -147,7 +148,7 @@ class SortingVisualizer extends JFrame {
                 mergeSort(secondHalf);
                 merge(firstHalf, secondHalf, list);
                 try {
-                    Thread.sleep(150); // Adjust the delay time as needed (in milliseconds)
+                    Thread.sleep(200);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -172,7 +173,7 @@ class SortingVisualizer extends JFrame {
 
         repaint();
         try {
-            Thread.sleep(150);
+            Thread.sleep(200);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -186,7 +187,7 @@ class SortingVisualizer extends JFrame {
             quickSort(list, low, pivotIndex - 1);
             quickSort(list, pivotIndex + 1, high);
             try {
-                Thread.sleep(150);
+                Thread.sleep(200);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -201,7 +202,7 @@ class SortingVisualizer extends JFrame {
                 i++;
                 swap(list, i, j);
                 try {
-                    Thread.sleep(150);
+                    Thread.sleep(200);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -220,7 +221,7 @@ class SortingVisualizer extends JFrame {
                 heap.add(element);
                 repaint();
                 try {
-                    Thread.sleep(500); // Adjust delay as needed
+                    Thread.sleep(200);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -230,7 +231,7 @@ class SortingVisualizer extends JFrame {
                 list.set(i, heap.remove());
                 repaint();
                 try {
-                    Thread.sleep(500); // Adjust delay as needed
+                    Thread.sleep(200);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -239,6 +240,8 @@ class SortingVisualizer extends JFrame {
             sortButton.setEnabled(true);
         }).start();
     }
+
+    // RESET METHOD
     private void resetElements() {
         elements.clear();
         elements.add(new Element("resources/hd.jpg", 100, 100));
@@ -250,21 +253,25 @@ class SortingVisualizer extends JFrame {
         elements.add(new Element("resources/hd.jpg", 80, 80));
         repaint();
     }
+
+    // SWAP METHOD
     private void swap(List<Element> list, int i, int j) {
         Element temp = list.get(i);
         list.set(i, list.get(j));
         list.set(j, temp);
     }
 
+    // THREAD SLEEP
     private void sleep() {
         try {
-            int delay = 150;
+            int delay = 200;
             Thread.sleep(delay);
         } catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
     }
 
+    // ELEMENTS
     static class Element implements Comparable<Element> {
         private Image image;
         private final int width;
@@ -293,7 +300,8 @@ class SortingVisualizer extends JFrame {
         }
     }
 
+    // MAIN
     public static void main(String[] args) {
-        new SortingVisualizer().setVisible(true);
+        new ElementSorter().setVisible(true);
     }
 }
