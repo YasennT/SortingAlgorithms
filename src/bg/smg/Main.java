@@ -60,24 +60,12 @@ class ElementSorter extends JFrame {
             sortButton.setEnabled(false);
             String selectedAlgorithm = (String) algorithmComboBox.getSelectedItem();
             switch (selectedAlgorithm) {
-                case "Bubble Sort":
-                    bubbleSort(elements);
-                    break;
-                case "Selection Sort":
-                    selectionSort(elements);
-                    break;
-                case "Insertion Sort":
-                    insertionSort(elements);
-                    break;
-                case "Merge Sort":
-                    mergeSort(elements);
-                    break;
-                case "Quick Sort":
-                    quickSort(elements, 0, elements.size()-1);
-                    break;
-                case "Heap Sort":
-                    heapSort(elements);
-                    break;
+                case "Bubble Sort" -> bubbleSort(elements);
+                case "Selection Sort" -> selectionSort(elements);
+                case "Insertion Sort" -> insertionSort(elements);
+                case "Merge Sort" -> mergeSort(elements);
+                case "Quick Sort" -> quickSort(elements, 0, elements.size() - 1);
+                case "Heap Sort" -> heapSort(elements);
             }
         });
         resetButton.addActionListener(e -> resetElements());
