@@ -4,12 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HeapSort<E extends Comparable<E>> {
-
-
-    public static class Heap<E extends Comparable<E>> {
         private final ArrayList<E> arr;
 
-        public Heap() {
+        public HeapSort() {
             arr = new ArrayList<>();
         }
 
@@ -60,5 +57,4 @@ public class HeapSort<E extends Comparable<E>> {
             return removedObject;
         }
 
-    }
 }

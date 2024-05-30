@@ -204,7 +204,7 @@ class ElementSorter extends JFrame {
     // HEAP SORT
     private void heapSort(List<Element> list) {
         new Thread(() -> {
-            HeapSort.Heap<Element> heap = new HeapSort.Heap<>();
+            HeapSort<Element> heap = new HeapSort<>();
             for (Element element : list) {
                 heap.add(element);
                 repaint();
@@ -256,35 +256,6 @@ class ElementSorter extends JFrame {
             Thread.sleep(delay);
         } catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
-        }
-    }
-
-    // ELEMENTS
-    static class Element implements Comparable<Element> {
-        private Image image;
-        private final int width;
-        private final int height;
-        public Element(String imagePath, int width, int height) {
-            try {
-              this.image = ImageIO.read(new File(imagePath));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            this.width = width;
-            this.height = height;
-        }
-        public Image getImage() {
-            return image;
-        }
-        public int getWidth() {
-            return width;
-        }
-        public int getHeight() {
-                return height;
-            }
-        @Override
-        public int compareTo(Element o) {
-            return Integer.compare(this.width, o.width);
         }
     }
 
